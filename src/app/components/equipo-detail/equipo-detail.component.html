@@ -55,7 +55,7 @@
               <div class="ui-grid-col-10">
                 <img *ngIf="equipo.shieldfile" [src]="equipo.shieldfile" class="img-thumbnail" width="100" height="100">
                 <div>
-                  <div *ngIf="equipo.shieldFile;then shieldFileContent else noShieldFileContent"></div>    
+                  <div *ngIf="equipo.shieldfile;then shieldFileContent else noShieldFileContent"></div>    
                   <ng-template #shieldFileContent>{{equipo.shieldFile.name}}</ng-template>
                   <ng-template #noShieldFileContent>None</ng-template>
                 </div>
