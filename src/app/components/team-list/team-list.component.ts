@@ -27,7 +27,7 @@ export class TeamListComponent implements OnInit {
             { field: 'id', header: 'Id' },
             { field: 'shield', header: 'Shield' },
             { field: 'name', header: 'Name' },
-            { field: 'country', header: 'Country' }
+            { field: 'country', header: 'Country' },
             { field: 'teamrival', header: 'Team Rival' }
         ];
   }
