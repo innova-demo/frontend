@@ -7,9 +7,9 @@ import { ErrorHandler } from "@angular/core";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EquipoListComponent } from './components/equipo-list/equipo-list.component';
-import { EquipoService } from './services/equipo.service';
-import { PaisService } from './services/pais.service';
+import { TeamListComponent } from './components/team-list/team-list.component';
+import { TeamService } from './services/team.service';
+import { CountryService } from './services/country.service';
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -17,18 +17,19 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FileUploadModule } from 'primeng/fileupload';
-import { EquipoDetailComponent } from './components/equipo-detail/equipo-detail.component';
+import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 
 import { CustomErrorHandle } from './common/custom-error-handle';
 
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {GrowlModule} from 'primeng/growl';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EquipoListComponent,
-    EquipoDetailComponent,
+    TeamListComponent,
+    TeamDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,11 +44,12 @@ import {MessageModule} from 'primeng/message';
     AutoCompleteModule,
     FileUploadModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    GrowlModule
   ],
   providers: [
-    PaisService, 
-    EquipoService,
+    CountryService, 
+    TeamService,
     {
       provide: ErrorHandler, 
       useClass: CustomErrorHandle

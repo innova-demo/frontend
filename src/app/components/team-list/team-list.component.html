@@ -1,0 +1,52 @@
+<p-growl [(value)]="msgs"></p-growl>
+<h3>UEFA Champions League 2018</h3>
+        <div>
+            <button type="button" pButton icon="pi pi-plus" (click)="addTeam()" label="Add" class="ui-button-success"></button>            
+        </div>
+<p-table #dt [columns]="teamListCols" [value]="teamList">
+    <ng-template pTemplate="caption">
+        <div style="text-align: right">        
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-team>
+        <tr>
+            <td>
+                {{team.id}}
+            </td>
+            <td>
+                <img *ngIf="team.shieldfile" [src]="team.shieldfile" class="img-thumbnail" width="50" height="50">
+            </td>
+            <td>
+                {{team.name}}
+            </td>
+            <td>
+                {{team.country?.name}}
+            </td>            
+            <td>
+                {{team.teamrival?.name}}
+            </td>            
+            <td>
+                <button type="button" pButton icon="pi pi-pencil" (click)="selectedTeam(team)" label="Edit" class="ui-button-primary"></button>
+            </td>            
+            <td>
+                <button type="button" pButton icon="pi pi-trash" (click)="deleteTeam(team)" label="Delete" class="ui-button-danger"></button>
+            </td>            
+        </tr>
+    </ng-template>
+</p-table>
+
+<div *ngIf="team">
+    <app-team-detail [display]="display" [team]="team" (displayChange)="onDialogClose($event)" (saveTeamNotify)="saveTeamDetail($event)"></app-team-detail>
+</div>

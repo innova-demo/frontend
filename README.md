@@ -1,2 +1,0 @@
-# frontend
-innova-demo frontend
