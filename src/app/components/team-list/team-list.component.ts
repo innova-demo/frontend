@@ -16,6 +16,7 @@ export class TeamListComponent implements OnInit {
   teamListCols: any[];
   team: Team;
   display: boolean = false;
+  displayChampion: boolean = false;  
   msgs: Message[] = [];
 
   constructor(private teamService: TeamService, private messageService: MessageService) { }
@@ -28,7 +29,8 @@ export class TeamListComponent implements OnInit {
             { field: 'shield', header: 'Shield' },
             { field: 'name', header: 'Name' },
             { field: 'country', header: 'Country' },
-            { field: 'teamrival', header: 'Team Rival' }
+            { field: 'teamrival', header: 'Team Rival' },
+            { field: 'champions', header: 'Champions' }
         ];
   }
 
@@ -44,11 +46,19 @@ export class TeamListComponent implements OnInit {
   selectedTeam(team: Team) {
     this.team = team;
     this.display = true;
+    this.displayChampion = false;
+  }
+
+  selectedTeamChampion(team: Team) {
+    this.team = team;
+    this.display = false;
+    this.displayChampion = true;
   }
 
   addTeam() {
     this.team = new Team;
     this.display = true;
+    this.displayChampion = false;
   }
 
   deleteTeam(team: Team) {
@@ -62,7 +72,11 @@ export class TeamListComponent implements OnInit {
   }
 
   onDialogClose(event) {
-   this.display = event;
+   this.display = false;
+  }
+
+  onChampionDialogClose(event) {
+   this.displayChampion = false;
   }
 
   saveTeamDetail(team: Team) {

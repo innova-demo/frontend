@@ -1,8 +1,5 @@
 <p-growl [(value)]="msgs"></p-growl>
 <h3>UEFA Champions League 2018</h3>
-        <div>
-            <button type="button" pButton icon="pi pi-plus" (click)="addTeam()" label="Add" class="ui-button-success"></button>            
-        </div>
 <p-table #dt [columns]="teamListCols" [value]="teamList">
     <ng-template pTemplate="caption">
         <div style="text-align: right">        
@@ -38,6 +35,11 @@
                 {{team.teamrival?.name}}
             </td>            
             <td>
+                <div style="text-align: center">
+                    <button pButton type="button" label="{{team.champions?.length || '0'}}" class="ui-button-rounded ui-button-info" (click)="selectedTeamChampion(team)" (displayChange)="onDialogChampionClose($event)"></button>
+                </div>
+            </td>            
+            <td>
                 <button type="button" pButton icon="pi pi-pencil" (click)="selectedTeam(team)" label="Edit" class="ui-button-primary"></button>
             </td>            
             <td>
@@ -45,8 +47,16 @@
             </td>            
         </tr>
     </ng-template>
+    <ng-template pTemplate="summary">
+        <div style="text-align: left">
+            <button type="button" pButton icon="pi pi-plus" (click)="addTeam()" label="Add" class="ui-button-success"></button>            
+        </div>
+    </ng-template>
 </p-table>
 
 <div *ngIf="team">
     <app-team-detail [display]="display" [team]="team" (displayChange)="onDialogClose($event)" (saveTeamNotify)="saveTeamDetail($event)"></app-team-detail>
+</div>
+<div *ngIf="team">
+    <app-team-champion-detail [displayChampion]="displayChampion" (displayChampionChange)="onChampionDialogClose($event)" [team]="team"></app-team-champion-detail>
 </div>

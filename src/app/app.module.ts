@@ -24,12 +24,14 @@ import { CustomErrorHandle } from './common/custom-error-handle';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {GrowlModule} from 'primeng/growl';
+import { TeamChampionDetailComponent } from './components/team-champion-detail/team-champion-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TeamListComponent,
     TeamDetailComponent,
+    TeamChampionDetailComponent,
   ],
   imports: [
     BrowserModule,

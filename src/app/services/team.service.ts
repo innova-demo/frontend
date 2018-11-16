@@ -1,4 +1,5 @@
 import { Team } from '../models/team';
+import { Champion } from '../models/champion';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -32,6 +33,15 @@ export class TeamService {
 
   deleteTeam(id: number) {
     return this.http.delete<any>(this.webApiUrl + "/" + id, httpOptions);    
+  }
+
+  getChampions(team: Team) {
+    return this.http.get<Champion[]>(this.webApiUrl + "/" + team.id + "/champion");    
+  }
+
+  saveChampion(id: number, champion: Champion) {
+    const body = JSON.stringify(champion);
+    return this.http.post<any>(this.webApiUrl + "/" + id + "/champion", body, httpOptions);
   }
 
 }
